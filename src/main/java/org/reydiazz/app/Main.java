@@ -1,4 +1,4 @@
-package org.reydiazz;
+package org.reydiazz.app;
 
 import com.jme3.app.SimpleApplication;
 
