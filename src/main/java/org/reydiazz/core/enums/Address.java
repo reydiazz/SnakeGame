@@ -1,4 +1,4 @@
-package org.reydiazz.core;
+package org.reydiazz.core.enums;
 
 public enum Address {
 
@@ -7,8 +7,8 @@ public enum Address {
     LEFT(-1, 0),
     RIGHT(1, 0);
 
-    final int dx;
-    final int dy;
+    public final int dx;
+    public final int dy;
 
     Address(int dx, int dy) {
         this.dx = dx;

@@ -1,4 +1,4 @@
-package org.reydiazz.core;
+package org.reydiazz.game.score;
 
 public class Score {
     private int bestScore = 0;

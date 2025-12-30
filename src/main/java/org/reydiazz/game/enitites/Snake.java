@@ -1,4 +1,6 @@
-package org.reydiazz.core;
+package org.reydiazz.game.enitites;
+
+import org.reydiazz.core.enums.Address;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

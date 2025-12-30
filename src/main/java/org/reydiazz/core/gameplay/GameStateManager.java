@@ -1,5 +1,11 @@
-package org.reydiazz.core;
+package org.reydiazz.core.gameplay;
 
+import org.reydiazz.core.enums.GameState;
+import org.reydiazz.game.enitites.Apple;
+import org.reydiazz.game.enitites.Point;
+import org.reydiazz.game.enitites.Snake;
+import org.reydiazz.game.score.Score;
+import org.reydiazz.game.world.Map;
 import org.reydiazz.util.Util;
 
 import java.util.Iterator;

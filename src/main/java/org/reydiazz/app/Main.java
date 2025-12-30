@@ -1,6 +1,7 @@
 package org.reydiazz.app;
 
 import com.jme3.app.SimpleApplication;
+import org.reydiazz.state.PlayState;
 
 public class Main extends SimpleApplication {
 
@@ -11,6 +12,7 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        System.out.println("JMonkeyEngine");
+        PlayState playState = new PlayState();
+        stateManager.attach(playState);
     }
 }

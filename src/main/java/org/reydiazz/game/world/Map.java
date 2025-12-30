@@ -1,4 +1,4 @@
-package org.reydiazz.core;
+package org.reydiazz.game.world;
 
 public class Map {
 
