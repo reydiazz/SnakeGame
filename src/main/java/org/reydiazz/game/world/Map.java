@@ -23,4 +23,5 @@ public class Map {
     public int getCol() {
         return col;
     }
+
 }

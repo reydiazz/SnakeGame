@@ -7,40 +7,40 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
-import org.reydiazz.game.world.Map;
+import org.reydiazz.game.model.MapData;
 
 public class GridRenderer {
 
     private final Node grid;
 
     public GridRenderer(SimpleApplication simpleApp) {
-        grid = new Node("Grid");
+        grid = new Node("gridNode");
         simpleApp.getRootNode().attachChild(grid);
     }
 
-    public void build(Map map, AssetManager assetManager) {
+    public void build(MapData mapData, AssetManager assetManager) {
+        float lineThickness = 0.05f;
+        float halfWidth = mapData.getWidth() / 2f;
+        float halfDepth = mapData.getHeight() / 2f;
 
-        Material lineMat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        lineMat.setColor("Color", ColorRGBA.White);
+        Material lineMaterial = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        lineMaterial.setColor("Color", ColorRGBA.White);
 
-        float cellSize = 1f;
-        float width = map.getRow() * cellSize;
-        float height = map.getCol() * cellSize;
 
-        for (int x = 0; x <= map.getRow(); x++) {
-            Box line = new Box(0.02f, 0.01f, height / 2f);
-            Geometry geo = new Geometry("VLine" + x, line);
-            geo.setMaterial(lineMat);
-            geo.setLocalTranslation(x * cellSize, 0.11f, height / 2f);
-            grid.attachChild(geo);
+        for (int x = 0; x <= mapData.getRows(); x++) {
+            Box lineMesh = new Box(lineThickness,lineThickness,halfDepth);
+            Geometry lineGeometry = new Geometry("VLine" + x, lineMesh);
+            lineGeometry.setMaterial(lineMaterial);
+            lineGeometry.setLocalTranslation(x * mapData.getCellSize(), mapData.getThickness() + 0.01f, halfDepth);
+            grid.attachChild(lineGeometry);
         }
 
-        for (int y = 0; y <= map.getCol(); y++) {
-            Box line = new Box(width / 2f, 0.01f, 0.02f);
-            Geometry geo = new Geometry("HLine" + y, line);
-            geo.setMaterial(lineMat);
-            geo.setLocalTranslation(width / 2f, 0.11f, y * cellSize);
-            grid.attachChild(geo);
+        for (int y = 0; y <= mapData.getCols(); y++) {
+            Box lineMesh = new Box(halfWidth, lineThickness, lineThickness);
+            Geometry lineGeometry = new Geometry("HLine" + y, lineMesh);
+            lineGeometry.setMaterial(lineMaterial);
+            lineGeometry.setLocalTranslation(halfWidth, mapData.getThickness() + 0.01f, y * mapData.getCellSize());
+            grid.attachChild(lineGeometry);
         }
     }
 }

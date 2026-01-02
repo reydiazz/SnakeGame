@@ -8,30 +8,28 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
-import org.reydiazz.game.world.Map;
+import org.reydiazz.game.model.MapData;
 
 public class FloorRenderer {
 
     private final Node floorNode;
 
     public FloorRenderer(SimpleApplication simpleApp) {
-        floorNode = new Node("Floor");
+        floorNode = new Node("floorNode");
         simpleApp.getRootNode().attachChild(floorNode);
     }
 
-    public void build(Map map, AssetManager assetManager) {
-        Box floorMesh = new Box(map.getRow()/2f,0.1f,map.getCol()/2f);
-        Geometry floorGeometry = new Geometry("FloorGeometry",floorMesh);
-        Material material = new Material(assetManager,"Common/MatDefs/Light/Lighting.j3md");
-        material.setBoolean("UseMaterialColors",true);
-        material.setColor("Diffuse", ColorRGBA.Brown);
-        material.setColor("Ambient", ColorRGBA.Brown);
-        floorGeometry.setMaterial(material);
-        floorGeometry.setLocalTranslation(map.getRow()/2f,0f,map.getCol()/2f);
+    public void build(MapData mapData, AssetManager assetManager) {
+        float halfWidth = mapData.getWidth() / 2f;
+        float halfHeight = mapData.getThickness() / 2f;
+        float halfDepth = mapData.getHeight() / 2f;
+        Box floorMesh = new Box(halfWidth,halfHeight,halfDepth);
+        Geometry floorGeometry = new Geometry("floorGeometry",floorMesh);
+        Material floorMaterial = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
+        floorMaterial.setColor("Color", ColorRGBA.fromRGBA255(41, 41, 41,1));
+        floorGeometry.setMaterial(floorMaterial);
+        floorGeometry.setLocalTranslation(mapData.getPosX() + halfWidth, mapData.getPosY() + halfHeight, mapData.getPosZ() + halfDepth);
         floorNode.attachChild(floorGeometry);
     }
-
-
-
 
 }
