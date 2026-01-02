@@ -15,6 +15,11 @@ public class Snake {
         body.addFirst(new Point(0, 0));
     }
 
+    public Snake(int row, int col) {
+        body = new ArrayDeque<>();
+        body.addFirst(new Point(row,col));
+    }
+
     public void move(Address address) {
         Point head = body.getFirst();
         Point newHead = new Point(head.getX() + address.dx, head.getY() + address.dy);

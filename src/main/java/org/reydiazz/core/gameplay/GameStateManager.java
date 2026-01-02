@@ -107,4 +107,8 @@ public class GameStateManager {
     public GameState getGameState() {
         return gameState;
     }
+
+    public Apple getApple() {
+        return apple;
+    }
 }
